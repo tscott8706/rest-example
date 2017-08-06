@@ -49,5 +49,5 @@ setup(
     packages=['restexample'],
     platforms='any',
     license='LICENSE',
-    install_requires=[]
+    install_requires=["flask", "Flask-PyMongo", "flask-restful"]
 )

@@ -1,2 +1,4 @@
 restexample.egg-info
 __pycache__
+.coverage
+cover

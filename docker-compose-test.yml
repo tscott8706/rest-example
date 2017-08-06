@@ -1,0 +1,36 @@
+version: "2"
+services:
+    #    nosetests:
+    #        build: .
+    #        image: restexample:latest
+    #        container_name: restexample
+    #        volumes:
+    #            - ./:/restexample
+    #        ports:
+    #            - 5000:5000
+#        links:
+#            - mongodb
+
+    restexample:
+        build: .
+        image: restexample:latest
+        volumes:
+            - ./:/restexample
+        ports:
+            - 5000:5000
+        links:
+            - mongodb
+
+    mongodb:
+        image: mongo
+        ports:
+            - 27017:27017
+
+    systemtests:
+        image: thoom/pyresttest
+        links:
+            - restexample
+        command: 
+
+volumes:
+    mongo-data:

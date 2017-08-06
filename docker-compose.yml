@@ -8,16 +8,29 @@ services:
             - ./:/restexample
         ports:
             - 5000:5000
-#        links:
-#            - mongodb
+        networks:
+            network:
+                ipv4_address: 192.168.1.1
 
-#    mongodb:
-#        image: mongo
-#        container_name: mongodb
-#        volumes:
-#            - mongo-data:/data/db
-#        ports:
-#            - 27017:27017
+    mongodb:
+        image: mongo
+        container_name: mongodb
+        volumes:
+            - mongo-data:/data/db
+        ports:
+            - 27017:27017
+        networks:
+            network:
+                ipv4_address: 192.168.1.2
 
 volumes:
     mongo-data:
+
+networks:
+    network:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet:  192.168.1.0/24
+                  gateway: 192.168.1.254
