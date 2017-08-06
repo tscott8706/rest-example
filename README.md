@@ -10,11 +10,12 @@ tools will do the job.
 
 * [Docker](https://www.docker.com/)
 * [Docker Compose](https://docs.docker.com/compose/)
+* docker build . --tag restexample:lastest
 
 ## Running
 * Start: docker-compose up -d
 * Stop: docker-compose down
-* The REST API can be retrieved from localhost:5000/api.
+* (in the future) The REST API can be retrieved from localhost:5000/api.
 * Use your favorite tool to make REST requests or run the testing containers.
 
 ## Testing

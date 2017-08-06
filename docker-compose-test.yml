@@ -1,36 +1,41 @@
 version: "2"
 services:
-    #    nosetests:
-    #        build: .
-    #        image: restexample:latest
-    #        container_name: restexample
-    #        volumes:
-    #            - ./:/restexample
-    #        ports:
-    #            - 5000:5000
-#        links:
-#            - mongodb
+    nosetests:
+        image: restexample:latest
+        network_mode: bridge
+        volumes:
+            - ./:/restexample
+        command: "bash -c 'cd /restexample && nosetests'"
 
     restexample:
-        build: .
         image: restexample:latest
+        container_name: restexample
         volumes:
             - ./:/restexample
         ports:
             - 5000:5000
-        links:
-            - mongodb
+        networks:
+            network:
+                ipv4_address: 192.168.1.1
 
     mongodb:
         image: mongo
         ports:
             - 27017:27017
+        networks:
+            network:
+                ipv4_address: 192.168.1.2
 
     systemtests:
         image: thoom/pyresttest
         links:
             - restexample
-        command: 
 
-volumes:
-    mongo-data:
+networks:
+    network:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet:  192.168.1.0/24
+                  gateway: 192.168.1.254
