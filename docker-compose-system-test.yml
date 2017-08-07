@@ -1,12 +1,5 @@
 version: "2"
 services:
-    nosetests:
-        image: restexample:latest
-        network_mode: bridge
-        volumes:
-            - ./:/restexample
-        command: "bash -c 'cd /restexample && nosetests'"
-
     restexample:
         image: restexample:latest
         container_name: restexample
@@ -28,8 +21,12 @@ services:
 
     systemtests:
         image: thoom/pyresttest
-        links:
-            - restexample
+        volumes:
+            - ./tests/:/tests/
+        command: "http://192.168.1.1:5000/ system-test.yml"
+        networks:
+            network:
+                ipv4_address: 192.168.1.3
 
 networks:
     network:

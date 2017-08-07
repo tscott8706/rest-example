@@ -19,5 +19,5 @@ tools will do the job.
 * Use your favorite tool to make REST requests or run the testing containers.
 
 ## Testing
-* Unit testing: docker-compose -f docker-compose-test.yml --rm run nosetests
-* System testing: docker-compose -f docker-compose-test.yml --rm run systemtests
+* Unit testing: docker-compose -f docker-compose-unit-test.yml run --rm nosetests
+* System testing: (tests not yet setup correctly) docker-compose -f docker-compose-system-test.yml up

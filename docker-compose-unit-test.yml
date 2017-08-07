@@ -1,0 +1,9 @@
+version: "2"
+services:
+    nosetests:
+        image: restexample:latest
+        network_mode: bridge
+        volumes:
+            - ./:/restexample
+        command: "bash -c 'cd /restexample && nosetests'"
+
